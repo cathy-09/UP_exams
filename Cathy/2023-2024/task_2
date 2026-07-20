@@ -24,7 +24,7 @@ int main()
 bool validDate(const char* array)
 {
 	int count = arrayCount(array);
-	if (count != 10)
+	if (count != ARRAY_DATA_COUNT)
 	{
 		return false;
 	}
