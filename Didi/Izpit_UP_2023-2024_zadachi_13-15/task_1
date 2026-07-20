@@ -2,8 +2,6 @@
 
 const int ARRAY_LENGTH = 10;
          
-//const int numbers[ARRAY_LENGTH] = { 0, 1, 2, 3, 4, 5, 6, 7, 8 ,9 };
-
 bool isNumber(char c) {
     return c >= '0' && c <= '9';
 }
