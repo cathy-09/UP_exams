@@ -1,12 +1,15 @@
+//MAINATA I NA SHIBANATA ZADACHA
+
 #include <iostream>
+#include <cmath> 
 
 int getLength(long number) {
+    number = std::abs(number);
     if (number == 0) {
-        return 0;
+        return 1;
     }
 
     int len = 0;
-
     while (number != 0) {
         len++;
         number /= 10;
@@ -16,49 +19,70 @@ int getLength(long number) {
 }
 
 bool checkNum(long number) {
-
+    number = std::abs(number); 
     int length = getLength(number);
-    int* numElements = new int[length];
 
-    for (size_t i = 0; i < length; i++)
-    {
-        numElements[length - i - 1] = number % 10;
-        number /= 10;
+    
+    if (length <= 2) {
+        return true;
     }
 
-    for (size_t skipIndex = 0; skipIndex < length; skipIndex++)
-    {
+    int* numElements = new int[length];
+    int* numElementsSkip = new int[length - 1];
+
+    long temp = number;
+    for (size_t i = 0; i < length; i++) {
+        numElements[length - i - 1] = temp % 10;
+        temp /= 10;
+    }
+
+    for (size_t skipIndex = 0; skipIndex < length; skipIndex++) {
         bool isDescending = true;
         bool isAscending = true;
 
-        for (size_t i = 0; i < length - 1; i++)
-        {
+        int index = 0;
+
+        for (size_t i = 0; i < length; i++) {
             if (i == skipIndex) {
                 continue;
             }
-
-            isAscending = isAscending && (numElements[i] < numElements[i + 1]);
-            isDescending = isDescending && (numElements[i] > numElements[i + 1]);
+            numElementsSkip[index++] = numElements[i];
         }
 
-        if (isAscending || isDescending) {
+        for (size_t j = 0; j < length - 2; j++) {
+            if (numElementsSkip[j] > numElementsSkip[j + 1]) {
+                isAscending = false;
+            }
+
+            if (numElementsSkip[j] < numElementsSkip[j + 1]) {
+                isDescending = false;
+            }
+        }
+
+        if (isDescending || isAscending) {
+            delete[] numElements;
+            delete[] numElementsSkip;
+
             return true;
         }
-
     }
 
     delete[] numElements;
+    delete[] numElementsSkip;
 
     return false;
 }
 
 int main() {
-    std::cout << std::boolalpha << checkNum(1324) << std::endl; //(true)
-    std::cout << std::boolalpha << checkNum(5412) << std::endl; //(true)
-    std::cout << std::boolalpha << checkNum(15243) << std::endl; //(false)
-    std::cout << std::boolalpha << checkNum(12345) << std::endl;//(true)
-    std::cout << std::boolalpha << checkNum(97531) << std::endl;//(true)
-    std::cout << std::boolalpha << checkNum(12121) << std::endl;//(false)
-    std::cout << std::boolalpha << checkNum(42) << std::endl;//(true)
-    std::cout << std::boolalpha << checkNum(-1324) << std::endl;//(true)
+    std::cout << std::boolalpha;
+    std::cout << checkNum(1324) << std::endl;  // true
+    std::cout << checkNum(5412) << std::endl;  // true
+    std::cout << checkNum(15243) << std::endl; // false
+    std::cout << checkNum(12345) << std::endl; // true
+    std::cout << checkNum(97531) << std::endl; // true
+    std::cout << checkNum(12121) << std::endl; // false
+    std::cout << checkNum(42) << std::endl;    // true
+    std::cout << checkNum(-1324) << std::endl; // true
+    std::cout << checkNum(0) << std::endl;     // true
+    std::cout << checkNum(7) << std::endl;     // true
 }
