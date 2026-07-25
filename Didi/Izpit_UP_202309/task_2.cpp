@@ -1,5 +1,6 @@
-#include <iostream>
+//NQMASHE PAK KAK DJEMBAKA DA NE SE NAMESI...
 
+#include <iostream>
 
 bool doExist(const char* symbols, const char* word) {
 
@@ -26,15 +27,18 @@ bool doExist(const char* symbols, const char* word) {
             counter++;
         }
         else {
+            if (counter > 0) {
+                symbolsEnd += counter; //We move the pointer back to the right (by as many steps as we were wrong)
+                counter = 0;
+            }
             wordStart = word;
-            counter = 0;
         }
 
-        if (*symbolsEnd == *wordEnd && counter == wordLen) {
+        if (counter == wordLen) {
             return true;
         }
 
-        if (*symbolsEnd == *symbols) {
+        if (symbolsEnd == symbols) {
             break;
         }
 
@@ -43,6 +47,7 @@ bool doExist(const char* symbols, const char* word) {
 
     return false;
 }
+
 
 int main() {
 
@@ -54,6 +59,6 @@ int main() {
     std::cout << "Test 3 (\"fed\"): " << doExist(symbols, "fed") << " (true)\n";
     std::cout << "Test 4 (\"f\"): " << doExist(symbols, "f") << " (true)\n";
     std::cout << "Test 5 (\"ed\"): " << doExist(symbols2, "ed") << " (true)\n";
-
+    std::cout << "Test 6 (\"aab\" in \"baaa\"): " << doExist("baaa", "aab") << " (true)\n";
     return 0;
 }
