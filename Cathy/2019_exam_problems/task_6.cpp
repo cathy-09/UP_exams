@@ -1,5 +1,3 @@
-//ERROR
-
 #include <iostream>
 using namespace std;
 int NumCalc(long num, int k, int l);
@@ -41,8 +39,8 @@ int NumCalc(long num, int k, int l)
 	{
 		return -1;
 	}
-	int indexK = digits[k - 1];
-	int indexL = digits[l - 1];
+	int indexK = digits[count - k];
+	int indexL = digits[count - l];
 	int sum = indexK + indexL;
 	return sum;
 }
