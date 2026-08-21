@@ -1,3 +1,5 @@
+//ERROR
+
 #include <iostream>
 using namespace std;
 int NumCalc(long num, int k, int l);
