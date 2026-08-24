@@ -24,7 +24,6 @@ int* numOfWords(char str[])
 	int chetnoCount = 0;
 	int nechetnoCount = 0;
 	int currCount = 0;
-	int i = 0;
 	for (size_t i = 0; str[i] != '\0'; i++)
 	{
 		char charche = str[i];
