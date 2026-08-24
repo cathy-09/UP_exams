@@ -21,7 +21,7 @@ bool checkstr(char* str)
     for (size_t i = 0; str[i] != '\0'; i++)
     {
         char charche = str[i];
-        if ((charche >= 'a' && charche <= 'z') && (charche >= 'A' && charche <= 'Z'))
+        if (!(charche >= 'a' && charche <= 'z') || !(charche >= 'A' && charche <= 'Z'))
         {
             return false;
         }
