@@ -47,7 +47,7 @@ long processNum(long num)
                 maxLen = currLen;
                 max = currNum;
             }
-            currNum = temp[0];
+            currNum = temp[i];
             currLen = 1;
             multiplyer = 10;
         }
